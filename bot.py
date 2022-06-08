@@ -6,15 +6,13 @@ from telegram.ext import Updater, CommandHandler
 
 def handle_start(update, context):
 
-    update.message.reply_text(
-        text=(
-            'This bot has been migrated to a new one: @ForwarderGeniusBot.'
-            '\nGo there and run /start to continue'
-        ),
-        reply_markup=InlineKeyboardMarkup([
-            [InlineKeyboardButton(text='Go to the bot', url='https://t.me/ForwarderGeniusBot')]
-        ])
-    )
+  text = update.message.text
+
+    if str(text).__contains__('#video'):
+        context.bot.send_message(
+            chat_id='-1001608616171',
+            text=str(text).replace('#video', '')
+        )
 
 
 if __name__ == '__main__':
